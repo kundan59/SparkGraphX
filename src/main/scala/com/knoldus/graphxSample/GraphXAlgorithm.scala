@@ -32,11 +32,11 @@ class GraphXAlgorithm {
    */
   def degreeOfSeparationSingleNode(generatedGraph: Graph[(String, Int), String],
                                    vertexId: VertexId): Unit = {
+
     getBFS(generatedGraph, vertexId).vertices
       .foreach(vertexes => println("vertex " + vertexId + " has degree of separation from vertex "
         + vertexes._1 + " is: " + vertexes._2))
     userChoice(generatedGraph)
-
   }
 
   /**
@@ -49,13 +49,12 @@ class GraphXAlgorithm {
    */
   def degreeOfSeparationBetweenTwoNode(generatedGraph: Graph[(String, Int), String],
                                        firstNode: VertexId, secondNode: VertexId): Unit = {
+
     getBFS(generatedGraph, firstNode)
       .vertices
       .filter { case (vertexId, _) => vertexId == secondNode }
       .collect.map { case (_, degree) => degree } foreach println
     userChoice(generatedGraph)
-
-
   }
 
   /**
@@ -66,6 +65,7 @@ class GraphXAlgorithm {
    * @return breadth-first search statement
    */
   private def getBFS(graph: Graph[(String, Int), String], root: VertexId) = {
+
     val initialGraph = graph.mapVertices((id, _) =>
       if (id == root) 0.0 else Double.PositiveInfinity)
 
@@ -89,6 +89,7 @@ class GraphXAlgorithm {
    * @return PageRank, importance of each vertices.
    */
   def pageRankPregelDynamic(generatedGraph: Graph[(String, Int), String]): Unit = {
+
     generatedGraph.pageRank(tol = 0.0001).vertices.sortByKey() foreach println
     userChoice(generatedGraph)
   }
@@ -100,6 +101,7 @@ class GraphXAlgorithm {
    * @return PageRank, importance of each vertices.
    */
   def pageRankIterative(generatedGraph: Graph[(String, Int), String]): Unit = {
+
     generatedGraph.staticPageRank(numIter = 20).vertices.sortByKey() foreach println
     userChoice(generatedGraph)
   }
@@ -112,6 +114,7 @@ class GraphXAlgorithm {
    * @return Tuple vertex id - lowest vertex id in a component
    */
   def connectedComponent(generatedGraph: Graph[(String, Int), String]): Unit = {
+
     generatedGraph.connectedComponents().vertices.sortByKey() foreach println
     userChoice(generatedGraph)
   }
@@ -123,6 +126,7 @@ class GraphXAlgorithm {
    * @return Number of triangles passing through each vertex.
    */
   def triangleCount(generatedGraph: Graph[(String, Int), String]): Unit = {
+
     generatedGraph.triangleCount().vertices.sortByKey().foreach(vertex => println(vertex._2 +
       " Triangles passes through the vertex " + vertex._1))
     userChoice(generatedGraph)
@@ -132,6 +136,7 @@ class GraphXAlgorithm {
    * provided choice to user.
    */
   def userChoice(generatedGraph: Graph[(String, Int), String]): Unit = {
+    
     println("Wants to execute other algorithms press(y/n) : ")
     val yesOrNo = scala.io.StdIn.readChar()
     if (yesOrNo == 'y' || yesOrNo == 'Y') {
