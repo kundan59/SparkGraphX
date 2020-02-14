@@ -69,7 +69,7 @@ class GraphXAlgorithm {
     val initialGraph = graph.mapVertices((id, _) =>
       if (id == root) 0.0 else Double.PositiveInfinity)
 
-    val bfs = initialGraph.pregel(Double.PositiveInfinity, maxIterations = 10)(
+    initialGraph.pregel(Double.PositiveInfinity, maxIterations = 10)(
       (_, attr, msg) => math.min(attr, msg),
       triplet => {
         if (triplet.srcAttr != Double.PositiveInfinity) {
@@ -79,7 +79,6 @@ class GraphXAlgorithm {
         }
       },
       (a, b) => math.min(a, b)).cache()
-    bfs
   }
 
   /**
@@ -136,8 +135,8 @@ class GraphXAlgorithm {
    * provided choice to user.
    */
   def userChoice(generatedGraph: Graph[(String, Int), String]): Unit = {
-    
-    println("Wants to execute other algorithms press(y/n) : ")
+
+    println("Wants to execute other algorithms press(y/n)?  ")
     val yesOrNo = scala.io.StdIn.readChar()
     if (yesOrNo == 'y' || yesOrNo == 'Y') {
       algorithmSelection.selectAlgorithm(generatedGraph)

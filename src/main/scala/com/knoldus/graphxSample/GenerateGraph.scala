@@ -29,7 +29,6 @@ class GenerateGraph {
     val edges = edgesRDD.map(edges => Edge(edges.srcId, edges.dstId, edges.relation))
 
     //resultant graph
-    val graph = Graph(vertices, edges)
-    graph
+   Graph(vertices, edges)
   }
 }

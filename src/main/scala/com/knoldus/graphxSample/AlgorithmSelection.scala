@@ -6,6 +6,7 @@ class AlgorithmSelection {
 
   def selectAlgorithm(generatedGraph: Graph[(String, Int), String]) {
 
+    println("..................................................................")
     println("Press 1 to get inDegree and outDegree for each vertices")
     println("Press 2 to find degree of separation for the given vertex")
     println("Press 3 to find degree of separation between the given two vertices")
@@ -22,12 +23,15 @@ class AlgorithmSelection {
     val algorithms = new GraphXAlgorithm()
 
     algorithmNumber match {
+
       case 1 => algorithms.inDegreeAndOutDegree(generatedGraph)
+
       case 2 => {
         println("enter vertexId for which finding degree of separation")
         val vertexId = scala.io.StdIn.readInt()
         algorithms.degreeOfSeparationSingleNode(generatedGraph, vertexId)
       }
+
       case 3 => {
         println("enter First vertexId for which finding degree of separation")
         val firstVertexId = scala.io.StdIn.readInt()
@@ -35,10 +39,15 @@ class AlgorithmSelection {
         val secondVertexId = scala.io.StdIn.readInt()
         algorithms.degreeOfSeparationBetweenTwoNode(generatedGraph, firstVertexId, secondVertexId)
       }
+
       case 4 => algorithms.pageRankPregelDynamic(generatedGraph)
+
       case 5 => algorithms.pageRankIterative(generatedGraph)
+
       case 6 => algorithms.connectedComponent(generatedGraph)
+
       case 7 => algorithms.triangleCount(generatedGraph)
+
       case _ => println("No such algorithm available for this number please enter only provided numbers ")
     }
   }
