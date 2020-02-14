@@ -1,4 +1,4 @@
-# SparkGraphX
+# Graph Analysis with spark Graphx
  
 The project consists of 4 scala files:
 1. GraphXSample - This is the main class
@@ -25,3 +25,5 @@ The way to use this project is to clone it from github and build it using sbt.
 ## How to Use
 1. Enter the option number for the graph algorithm to apply
 2. Output should be visible on the console.
+
+## Anyone can use these algorithm to analyse data accordingly for instance find most influenced person in the graph using page Rank Algorithm, most connected user in social graph based on graph degrees and so on.
